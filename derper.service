@@ -1,0 +1,24 @@
+[Unit]
+Description=Tailscale DERP Server
+After=network.target
+
+[Service]
+Type=simple
+User=derper
+Group=derper
+ExecStart=/usr/bin/derper
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=1048576
+
+# Hardening measures
+PrivateTmp=yes
+ProtectSystem=full
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+[Install]
+WantedBy=multi-user.target

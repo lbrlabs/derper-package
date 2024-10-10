@@ -1,0 +1,24 @@
+[Unit]
+Description=Tailscale XDPDERP Server
+After=network.target
+
+[Service]
+Type=simple
+User=xdpderper
+Group=xdpderper
+ExecStart=/usr/bin/xdpderper
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=1048576
+
+# Hardening measures
+PrivateTmp=yes
+ProtectSystem=full
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+[Install]
+WantedBy=multi-user.target

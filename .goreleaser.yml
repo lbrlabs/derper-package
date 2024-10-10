@@ -1,0 +1,74 @@
+# .goreleaser.yaml
+version: 2
+project_name: tailscale-tools
+
+before:
+  hooks:
+    - rm -rf tailscale  # Remove existing tailscale directory if it exists
+    - git clone https://github.com/tailscale/tailscale.git
+    - cd tailscale && go mod download
+
+builds:
+  - id: xdpderper
+    env:
+      - CGO_ENABLED=0
+      - TS_USE_GOCROSS=1
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    main: ./cmd/xdpderper
+    binary: xdpderper
+    dir: tailscale
+
+  - id: derper
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    main: ./cmd/derper
+    binary: derper
+    dir: tailscale
+
+nfpms:
+  - package_name: tailscale-tools
+    homepage: https://tailscale.com
+    maintainer: Your Name <your.email@example.com>
+    description: Tailscale DERP and XDPDERP servers
+    formats:
+      - rpm
+    bindir: /usr/bin
+    contents:
+      - src: xdpderper.service
+        dst: /usr/lib/systemd/system/xdpderper.service
+      - src: derper.service
+        dst: /usr/lib/systemd/system/derper.service
+    scripts:
+      preinstall: ./scripts/preinstall.sh
+      postinstall: ./scripts/postinstall.sh
+
+archives:
+- name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
+
+snapshot:
+  name_template: "{{ .Tag }}-SNAPSHOT"
+
+checksum:
+  name_template: 'checksums.txt'
+
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+release:
+  github:
+    owner: your-github-username
+    name: your-repo-name
