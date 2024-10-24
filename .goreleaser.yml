@@ -1,6 +1,6 @@
 # .goreleaser.yaml
 version: 2
-project_name: tailscale-tools
+project_name: tailscale-derper
 
 before:
   hooks:
@@ -35,9 +35,9 @@ builds:
     dir: tailscale
 
 nfpms:
-  - package_name: tailscale-tools
+  - package_name: tailscale-derper
     homepage: https://tailscale.com
-    maintainer: Your Name <your.email@example.com>
+    maintainer: Lee Briggs <mail@lbrlabs.com>
     description: Tailscale DERP and XDPDERP servers
     formats:
       - rpm
