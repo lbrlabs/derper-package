@@ -72,4 +72,4 @@ changelog:
 release:
   github:
     owner: lbrlabs
-    name: tailscale-rpm
+    name: derper-package
