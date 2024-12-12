@@ -6,19 +6,12 @@ After=network.target
 Type=simple
 User=derper
 Group=derper
-ExecStart=/usr/bin/derper
+ExecStart=/usr/bin/derper -c /etc/derper/derper.conf
 Restart=on-failure
 RestartSec=5
 LimitNOFILE=1048576
 
 # Hardening measures
-PrivateTmp=yes
-ProtectSystem=full
-NoNewPrivileges=yes
-ProtectHome=yes
-ProtectKernelTunables=yes
-ProtectKernelModules=yes
-ProtectControlGroups=yes
 AmbientCapabilities=CAP_NET_BIND_SERVICE
 CapabilityBoundingSet=CAP_NET_BIND_SERVICE
 
