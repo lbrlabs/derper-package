@@ -41,6 +41,7 @@ nfpms:
     description: Tailscale DERP and XDPDERP servers
     formats:
       - rpm
+      - deb
     bindir: /usr/bin
     contents:
       - src: xdpderper.service
@@ -70,5 +71,5 @@ changelog:
 
 release:
   github:
-    owner: your-github-username
-    name: your-repo-name
+    owner: lbrlabs
+    name: tailscale-rpm
