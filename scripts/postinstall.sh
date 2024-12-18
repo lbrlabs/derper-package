@@ -10,7 +10,5 @@ systemctl enable derper.service
 systemctl start xdpderper.service
 systemctl start derper.service
 
-# setcap
-sudo setcap 'cap_net_bind_service=+ep' /usr/bin/derper
-sudo setcap 'cap_net_bind_service=+ep' /usr/bin/xdpderper
+
 
