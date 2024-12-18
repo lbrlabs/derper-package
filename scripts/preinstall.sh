@@ -29,12 +29,3 @@ mkdir -p /etc/derper
 mkdir -p /var/cache/derper/certs
 mkdir -p /var/lib/derper
 
-# Create a configuration file if it doesn't exist
-if [ ! -f "$CONFIG_DIR/derper" ]; then
-    echo "# Configuration file for DERP server" > "$CONFIG_DIR/derper"
-    echo "HOSTNAME=your-default-hostname.example.com" >> "$CONFIG_DIR/derper"
-    echo "Configuration file created at $CONFIG_DIR/derper"
-else
-    echo "Configuration file already exists at $CONFIG_DIR/derper"
-fi
-
