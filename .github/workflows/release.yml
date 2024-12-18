@@ -16,6 +16,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Unshallow clone
         run: git fetch --prune --unshallow
+      - name: Fetch git submodules
+        run: git submodule update --init --recursive
       - name: Install Go
         uses: actions/setup-go@v2
         with:

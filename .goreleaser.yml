@@ -4,9 +4,8 @@ project_name: tailscale-derper
 
 before:
   hooks:
-    - rm -rf tailscale  # Remove existing tailscale directory if it exists
-    - git clone https://github.com/tailscale/tailscale.git
-    - cd tailscale && go mod download
+    - go mod tidy
+    - git submodule update --init --recursive
 
 builds:
   - id: xdpderper
